@@ -8,7 +8,7 @@ export const GET = handleAuth({
     authorizationParams: {
       screen_hint: "signup",
     },
-    returnTo: "/budget",
+    returnTo: "/signup-experience",
   }),
   logout: handleLogout({
     returnTo: "/login"
