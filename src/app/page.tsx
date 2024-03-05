@@ -1,7 +1,10 @@
+import { NavBarButtons } from "@/components/navigation/navbar-button";
+
 export default function Home() {
   return (
-    <div>
-      <p> Hello world uweioweoiweofin </p>
-    </div>
+    <body>
+      <NavBarButtons />
+      <div>Home</div>
+    </body>
   );
 }

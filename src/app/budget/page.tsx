@@ -1,7 +1,9 @@
+import { NavBarButtons } from "@/components/navigation/navbar-button";
+
 export default function Dashboard() {
   return (
-    <div>
-      Budget Dashboard
-    </div>
+    <body>
+      <NavBarButtons />
+    </body>
   )
 }
