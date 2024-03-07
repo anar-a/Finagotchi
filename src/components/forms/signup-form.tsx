@@ -1,19 +1,29 @@
 'use client';
 
-import { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
+import { UserInfo } from "./UserInfo";
+import { PetName } from "./PetName";
 
 export const SignupForm = () => {
 
+
     const [formData, setFormData] = useState({
+        step: 1,
         name: '',
-        budgets: [{ budgetName: '', totalSpent: '', goal: '' }]
+        budgets: [{ budgetName: '', totalSpent: '', goal: '' }],
+        petName: ''
     })
 
-    const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            name: event.target.value
-        }));
+    const prevStep = () => {
+        setFormData(prevData => ({ ...prevData, step: prevData.step - 1 }));
+    }
+
+    const nextStep = () => {
+        setFormData(prevData => ({ ...prevData, step: prevData.step + 1 }));
+    }
+
+    const handleChange = (property: string, value: string) => {
+        setFormData((prevData) => ({ ...prevData, [property]: value }));
     }
 
     const handleBudgetChange = (index: number, field: string, value: string) => {
@@ -39,71 +49,48 @@ export const SignupForm = () => {
         });
     }
 
-    const submit = (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(formData)
     }
 
-    return (
-        <div className="h-screen flex flex-col items-center">
-            <h1 className="text-5xl py-10 text-gray-700">Start Saving Now!</h1>
-            <form className="flex flex-col items-center" onSubmit={submit}>
+    const renderStep = () => {
 
-                <div className="h-14 w-full inline-flex mb-5 focus">
-                    <label className="w-1/6 items-center inline-flex justify-center rounded-l-xl bg-gray-100 border-2 border-gray-300 text-gray-700">Name</label>
-                    <input
-                        className="w-5/6 text-xl indent-2 rounded-r-xl border-y-2 border-r-2 border-gray-300 hover:bg-gray-100 outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-                        type="text"
-                        name="name"
-                        placeholder="Ex: Jack Dawson"
-                        value={formData.name}
-                        onChange={event => handleNameChange(event)}
-                        required
+        const { step, name, budgets, petName } = formData;
+        const values = { step, name, budgets, petName }
+
+        switch (step) {
+            case 1:
+                return (
+                    <UserInfo
+                        nextStep={nextStep}
+                        handleChange={handleChange}
+                        handleBudgetChange={handleBudgetChange}
+                        handleAddBudget={handleAddBudget}
+                        handleRemoveBudget={handleRemoveBudget}
+                        values={values}
                     />
-                </div>
+                )
+            case 2:
+                return (
+                    <PetName
+                        prevStep={prevStep}
+                        nextStep={nextStep}
+                        handleChange={handleChange}
+                        values={values}
+                    />
+                )
+            
+            case 3:
+                return (
+                    <div>Sucess</div>
+                )
 
-                {formData.budgets.map((input, index) => {
-                    return (
-                        <div key={index} className="h-14 w-full rounded-lg w-full my-2 flex flex-nowrap border-2 border-gray-300">
-                            <input
-                                className="items-center inline-flex justify-center indent-2 rounded-l-lg border-r-2"
-                                name="budgetName"
-                                placeholder="Budget Name"
-                                value={input.budgetName}
-                                onChange={event => handleBudgetChange(index, 'budgetName', event.target.value)}
-                                required
-                            />
-                            <span className="pl-1 items-center inline-flex text-gray-500 sm:text-sm">$</span>
-                            <input
-                                className="items-center inline-flex justify-center indent-2 border-r-2"
-                                name="totalSpent"
-                                placeholder="Total Spent"
-                                value={input.totalSpent}
-                                onChange={event => handleBudgetChange(index, 'totalSpent', event.target.value)}
-                                required
-                            />
-                            <span className="pl-1 items-center inline-flex text-gray-500 sm:text-sm">$</span>
-                            <input
-                                className="items-center inline-flex justify-center indent-2 border-r-2"
-                                name="goal"
-                                placeholder="Goal"
-                                value={input.goal}
-                                onChange={event => handleBudgetChange(index, 'goal', event.target.value)}
-                                required
-                            />
-                            <button className="p-1 bg-red-400 rounded-r-md text-gray-800" type="button" onClick={() => handleRemoveBudget(index)}>Remove</button>
-                        </div>
-                    )
-                })}
+            default:
+                return null;
+        }
+    }
 
-                <div className="w-full flex justify-end">
-                    <button className="bg-blue-400 p-2 mr-80 rounded-lg text-slate-100" type="button" onClick={handleAddBudget}>Add Budget</button>
-                    <button className="bg-blue-400 p-2 rounded-lg text-slate-100">Continue</button>
-                </div>
-            </form>
-        </div>
-
-
-    );
+    return <div>{renderStep()}</div>;
 
 }
