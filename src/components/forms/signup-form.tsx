@@ -83,7 +83,7 @@ export const SignupForm = () => {
             
             case 3:
                 return (
-                    <div>Sucess</div>
+                    <div>Success</div>
                 )
 
             default:
