@@ -21,9 +21,8 @@ export default function page(){
     <>
     <td>
       <div className="home-picture">
-        
         <Image src={Background} alt="Placeholder"></Image>
-      </div>
+      </div>  
     </td>
     </>
     </>

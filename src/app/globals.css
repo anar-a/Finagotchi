@@ -7,20 +7,23 @@
 }
 
 body {
-    margin: 0;
+   margin: 0;
 }
 
 .home-content{
     display: flex;
     padding: 0 5rem;
-    width: 50%;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-picture{
-    display:center;
+    display:flex;
     padding:0 5rem;
-    width: 50%;
-
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
 }
 .nav {
     background-color: black;
