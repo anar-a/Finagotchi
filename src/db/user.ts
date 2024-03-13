@@ -49,10 +49,10 @@ export function createUser(userEmail: string) {
     })
 }
 
-export function getUserBySession(userSession: Claims) {
+export function getUserByEmail(userEmail: string) {
     return prisma.user.findUnique({
         where: {
-            email: userSession?.email
+            email: userEmail
         }
     })
 }
