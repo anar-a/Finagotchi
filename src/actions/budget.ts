@@ -1,6 +1,6 @@
 'use server'
 import { getUser } from "./user"
-import { BudgetData, UserBudgetData, createBudgetForUser, editBudgetById, getBudgetsByUser, getBudgetByUserAndId, deleteBudgetByUserAndId } from '@/db/budget';
+import { BudgetData, createBudgetForUser, editBudgetById, getBudgetsByUser, getBudgetByUserAndId, deleteBudgetByUserAndId } from '@/db/budget';
 
 // slower since it has to query for the user by email
 export async function createBudget(budgetData: BudgetData) {

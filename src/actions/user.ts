@@ -1,6 +1,5 @@
 'use server'
 import { createUser, getSessionInfo, getUserByEmail } from '@/db/user';
-import prisma from '@/prisma/prisma'
 
 export async function getUser() {
     const user = await getSessionInfo();
