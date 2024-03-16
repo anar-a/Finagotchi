@@ -22,8 +22,14 @@ export default function dashboard() {
           color: 'white' }}>
               Helllooooo
       </h1> */}
-      <Carousel></Carousel>
-      <Menu></Menu>
+      <div className = "flex h-full">
+        <div className = "p-9 my-40">
+          <Menu></Menu>
+        </div>
+        {/* <div> */}
+          <Carousel></Carousel>
+        {/* </div> */}
+      </div>
     </div>
   )
 }
