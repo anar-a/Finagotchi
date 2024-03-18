@@ -6,7 +6,7 @@ import { user } from "@prisma/client";
 // -------------------------------------------------------------------------------------
 
 export type BudgetData = {
-    description: string,
+    name: string,
     target: number,
     spent: number,
 };
@@ -29,7 +29,7 @@ export function createBudgetForUser(userBudgetData: UserBudgetData) {
             user: userBudgetData.user,
             target: userBudgetData.target,
             spent: userBudgetData.spent,
-            description: userBudgetData.description,
+            name: userBudgetData.name,
         }
     });
 }
@@ -46,7 +46,7 @@ export function editBudgetById(id: number, userBudgetData: UserBudgetData) {
         data: {
             target: userBudgetData.target,
             spent: userBudgetData.spent,
-            description: userBudgetData.description,
+            name: userBudgetData.name,
         }
     })
 }

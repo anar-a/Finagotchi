@@ -1,3 +1,5 @@
+import { createBudgets } from "@/actions/budget";
+import { BudgetData } from "@/db/budget";
 import React from "react";
 
 export const PetName = ({ prevStep, nextStep, handleChange, values }: any) => {
@@ -9,13 +11,30 @@ export const PetName = ({ prevStep, nextStep, handleChange, values }: any) => {
 
     const Continue = (event: any) => {
         event.preventDefault();
-        console.log(values);
+
+        const budgets = values.budgets.map((budget: any) => {
+            const b : BudgetData = {
+                name: budget.budgetName,
+                spent: budget.totalSpent,
+                target: budget.goal,
+            }
+            return b;
+        });
+
+        createBudgets(budgets)
+        .then((createdBudgets) => {
+            if (!createdBudgets) {
+                console.log("Unable to create budgets or not budgets provided");
+            }
+            console.log("Created budgets", createdBudgets)
+        })
+
         nextStep();
     }
 
     return (
         <div className="h-screen flex flex-col items-center">
-            <h1>Enter Your Pets Name!</h1>
+            <h1>Enter Your Pet's Name!</h1>
             <form onSubmit={Continue}>
                 <label>Pet Name</label>
                 <input

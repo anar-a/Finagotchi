@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+
+function restrictInput(event: any) {
+    const input = event.target;
+    let value = input.value;
+    
+    value = value.replace(/[^\d.]/g, '');  // Remove non-numeric and non-decimal point characters
+    value = value.replace(/^(\d*\.\d*)\..*$/, '$1');  // Ensure there's only one decimal point
+
+    input.value = value;
+}
 
 export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAddBudget, handleRemoveBudget, values }: any) => {
+    const [errorMessage, setErrorMessage] = useState("");
 
     const Continue = (event: any) => {
         event.preventDefault();
-        console.log(values);
+
+        // validate budgets 
+        for (const budget of values.budgets) {
+            budget.totalSpent = Number(budget.totalSpent);
+            budget.goal = Number(budget.goal); 
+            
+            let budgetValid = false;
+
+            if (!Number.isNaN(budget.totalSpent) && !Number.isNaN(budget.goal)) {
+                if (budget.totalSpent < 0) {
+                    setErrorMessage("Total spent must not be negative");
+                }
+                else if (budget.goal < 0) {
+                    setErrorMessage("Goal must not be negative");
+                }
+                else {
+                    budgetValid = true;
+                    setErrorMessage("");
+                }
+            }
+            else {
+                setErrorMessage("Input must be a number");
+            }
+
+            if (!budgetValid) {
+                return;
+            };
+        }
+
         nextStep();
     }
 
@@ -43,6 +82,7 @@ export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAdd
                                 placeholder="Total Spent"
                                 value={input.totalSpent}
                                 onChange={event => handleBudgetChange(index, 'totalSpent', event.target.value)}
+                                onInput={restrictInput}
                                 required
                             />
                             <span className="pl-1 items-center inline-flex text-gray-500 sm:text-sm">$</span>
@@ -52,12 +92,17 @@ export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAdd
                                 placeholder="Goal"
                                 value={input.goal}
                                 onChange={event => handleBudgetChange(index, 'goal', event.target.value)}
+                                onInput={restrictInput}
                                 required
                             />
                             <button className="p-1 bg-red-400 rounded-r-md text-gray-800" type="button" onClick={() => handleRemoveBudget(index)}>Remove</button>
                         </div>
                     )
                 })}
+
+                <div className="text-red-600 my-5 font-semibold">
+                    {errorMessage}
+                </div>
 
                 <div className="w-full flex justify-end">
                     <button 
