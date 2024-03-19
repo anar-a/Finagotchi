@@ -12,7 +12,7 @@ datasource db {
 model budget {
   id                                     BigInt        @id(map: "budget_pkey1") @default(autoincrement())
   created_at                             DateTime      @default(now()) @db.Timestamptz(6)
-  description                            String        @db.VarChar
+  name                                   String        @db.VarChar
   target                                 Float         @default(0) @db.Real
   user                                   BigInt
   spent                                  Float         @default(0) @db.Real
