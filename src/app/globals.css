@@ -10,19 +10,20 @@ body {
    margin: 0;
 }
 
+.wholethang {
+    background: radial-gradient(circle at top, #f26d7b , #e8c369);
+}
+
 .home-content{
     display: flex;
     padding: 0 5rem;
-    background-color: gray;
-    justify-content: center;
     align-items: center;
+    
 }
 
 .home-picture{
     display:flex;
     padding:0 5rem;
-    background-color: gray;
-    justify-content: center;
     align-items: center;
 }
 .nav {

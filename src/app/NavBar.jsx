@@ -1,10 +1,7 @@
 export default function NavBar() {
     return <nav className="nav">
-        <a href="/" className="site-title">Finogatchi</a>
+        <a href="/" className="site-title">Finagotchi</a>
         <ul>
-            <li>
-                <a href="/finogatchis">Finogatchis</a>
-            </li>
             <li>
                 <a href="/about">About</a>
             </li>
