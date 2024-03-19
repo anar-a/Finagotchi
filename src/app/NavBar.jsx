@@ -1,3 +1,6 @@
+import { SignupButton } from "@/components/buttons/signup-button";
+
+
 export default function NavBar() {
     return <nav className="nav">
         <a href="/" className="site-title">Finagotchi</a>
@@ -6,10 +9,10 @@ export default function NavBar() {
                 <a href="/about">About</a>
             </li>
             <li>
-                <a href="/signup">Signup</a>
+                <a className="button__sign-up" href="/api/auth/signup">Signup</a>
             </li>
             <li>
-                <a href="/login">Login</a>
+                <a className="button__login" href="/api/auth/login">Login</a>
             </li>
         </ul>
     </nav>

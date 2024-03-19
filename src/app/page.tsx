@@ -11,7 +11,7 @@ export default function page(){
       <NavBar />
     </div>
     <>
-    <div className=" h-screen grid grid-rows-2 md:grid-cols-2">
+    <div className="wholethang h-screen grid grid-rows-2 md:grid-cols-2">
     <div className="home-content md:h-screen flex flex-col justify-center items-center italic font-sans font-bold">
       <div>
         <h1 className="text-5xl">
@@ -20,7 +20,7 @@ export default function page(){
       </div>
       <div className="my-10">
        Finagotchi is a new way of budgeting, combining classic budgeting with tamogtchi. Your budgeting habits directly impact
-       your new friend based on how much you are able to stick to your good budgeting habits.
+       your new friend based on how much you are able to stick to your good budgeting habits. Sign up today!
       </div>
     </div>
       <div className="home-picture md:h-screen flex flex-col justify-center items-center italic font-sans font-bold">
