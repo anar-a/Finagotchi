@@ -1,10 +1,10 @@
-import { SignupButton } from "@/components/buttons/signup-button";
-
-
 export default function NavBar() {
     return <nav className="nav">
         <a href="/" className="site-title">Finagotchi</a>
         <ul>
+            <li>
+                <a href="/dashboard">Dashboard</a>
+            </li>
             <li>
                 <a href="/about">About</a>
             </li>

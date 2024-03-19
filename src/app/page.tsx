@@ -12,9 +12,9 @@ export default function page(){
     </div>
     <>
     <div className="wholethang h-screen grid grid-rows-2 md:grid-cols-2">
-    <div className="home-content md:h-screen flex flex-col justify-center items-center italic font-sans font-bold">
+    <div className="home-content md:h-screen flex flex-col justify-center items-center font-sans font-bold">
       <div>
-        <h1 className="text-5xl">
+        <h1 className="text-5xl  italic ">
           Change your relationship with money
         </h1>
       </div>
@@ -23,7 +23,7 @@ export default function page(){
        your new friend based on how much you are able to stick to your good budgeting habits. Sign up today!
       </div>
     </div>
-      <div className="home-picture md:h-screen flex flex-col justify-center items-center italic font-sans font-bold">
+      <div className="home-picture md:h-screen flex flex-col justify-center items-center font-sans font-bold">
         <div style={{ borderRadius: "10%", overflow: "hidden" }}>
           <Image src={Background} alt="Placeholder" width={600} height={600}></Image>
         </div>
