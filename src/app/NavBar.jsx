@@ -6,6 +6,9 @@ export default function NavBar() {
                 <a href="/about">About</a>
             </li>
             <li>
+                <a href="/signup">Signup</a>
+            </li>
+            <li>
                 <a href="/login">Login</a>
             </li>
         </ul>
