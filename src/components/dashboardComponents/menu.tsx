@@ -11,15 +11,15 @@ function menu() {
       <h4 className="font-bold text-large m-auto text-purple-700 font-mono">Menu</h4>
       <Spacer y={4}></Spacer>
       <CardBody className="gap-8 justify-between">
-        <Button color="secondary">
+        <Button color="secondary" aria-label="Profile">
           <Image src={ UserIcon } alt="Profile Icon" />
           Profile
         </Button>
-        <Button className="bg-gradient-to-tr from-purple-500 to-blue-500 text-white shadow-lg">
+        <Button className="bg-gradient-to-tr from-purple-500 to-blue-500 text-white shadow-lg" aria-label="Budget">
           <Image src={ BudgetIcon } alt="Budget Icon" />
           Budget
         </Button>
-        <Button color="primary">
+        <Button color="primary" aria-label="Settings">
           <Image src={ SettingsIcon } alt="Settings Icon" />
           Settings
         </Button>
