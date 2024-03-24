@@ -8,7 +8,7 @@ import AddTransactionModal from '@/components/modals/AddTransaction';
 
 
 export default function button(props: any) {
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     function toggleModal() {
       setShowModal(!showModal);
