@@ -1,6 +1,6 @@
 import { addTransaction } from "@/actions/transaction";
 import { TransactionData } from "@/db/transaction";
-import { restrictNumberInput } from "@/utility/BudgetInputValidation";
+import { restrictNumberInput } from "@/utility/InputValidation";
 import { budget } from "@prisma/client";
 import { FormEvent, useRef, useState } from "react";
 import { FaXmark } from "react-icons/fa6";

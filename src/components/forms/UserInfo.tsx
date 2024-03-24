@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { restrictNumberInput } from "@/utility/BudgetInputValidation";
+import { restrictNumberInput } from "@/utility/InputValidation";
 
 export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAddBudget, handleRemoveBudget, values }: any) => {
     const [errorMessage, setErrorMessage] = useState("");
