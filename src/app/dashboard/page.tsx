@@ -17,7 +17,7 @@ export default async function dashboard() {
     spent: number,
   }
 
-  var budgets: Budget[];
+  var budgets: Budget[] = [];
   const budgetsResponse = await getBudgets();
   if (budgetsResponse) {
     budgets = budgetsResponse;
@@ -42,7 +42,8 @@ export default async function dashboard() {
           {/* @ts-ignore: b.color turns into a valid property */}
           <Carousel budgets={budgets}></Carousel>
         </div>
-        <AddTransactionButton budgets={budgets}/>
+        
+        {budgets && <AddTransactionButton budgets={budgets}/>}
       </div>
     </div>
   )
