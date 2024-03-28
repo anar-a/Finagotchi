@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-
-function restrictInput(event: any) {
-    const input = event.target;
-    let value = input.value;
-    
-    value = value.replace(/[^\d.]/g, '');  // Remove non-numeric and non-decimal point characters
-    value = value.replace(/^(\d*\.\d*)\..*$/, '$1');  // Ensure there's only one decimal point
-
-    input.value = value;
-}
+import { restrictNumberInput } from "@/utility/InputValidation";
 
 export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAddBudget, handleRemoveBudget, values }: any) => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -82,7 +73,7 @@ export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAdd
                                 placeholder="Total Spent"
                                 value={input.totalSpent}
                                 onChange={event => handleBudgetChange(index, 'totalSpent', event.target.value)}
-                                onInput={restrictInput}
+                                onInput={restrictNumberInput}
                                 required
                             />
                             <span className="pl-1 items-center inline-flex text-gray-500 sm:text-sm">$</span>
@@ -92,7 +83,7 @@ export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAdd
                                 placeholder="Goal"
                                 value={input.goal}
                                 onChange={event => handleBudgetChange(index, 'goal', event.target.value)}
-                                onInput={restrictInput}
+                                onInput={restrictNumberInput}
                                 required
                             />
                             <button className="p-1 bg-red-400 rounded-r-md text-gray-800" type="button" onClick={() => handleRemoveBudget(index)}>Remove</button>
