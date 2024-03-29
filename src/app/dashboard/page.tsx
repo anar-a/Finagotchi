@@ -28,16 +28,12 @@ export default async function dashboard() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      {/* Background */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'solid 10px black' }}>
-        <Image 
-          src={Background}
-          alt="Background Image with Pet"
-          layout="fill"
-          objectFit="cover">
-        </Image>
-      </div>
-      {/* All other components */}
+      <Image 
+        src={Background}
+        alt="Background Image with Pet"
+        layout="fill"
+        objectFit='cover'>
+      </Image>
       <div className = "flex h-full">
         {/* menu */}
         <div className = "p-9 my-40">
