@@ -35,7 +35,6 @@ export default async function dashboard() {
         objectFit='cover'>
       </Image>
       <div className = "flex h-full">
-        {/* menu */}
         <div className = "p-9 my-40">
           <Menu></Menu>
         </div>
