@@ -5,18 +5,17 @@ import { getBudgets } from '@/actions/budget';
 import AddTransactionButton from '@/components/dashboardComponents/AddTransactionButton'
 import Image from 'next/image'
 
+type Budget = {
+  id: bigint 
+  created_at: Date
+  name: string, 
+  target: number, 
+  user: bigint,
+  spent: number,
+}
 
 export default async function dashboard() {
   
-  type Budget = {
-    id: bigint 
-    created_at: Date
-    name: string, 
-    target: number, 
-    user: bigint,
-    spent: number,
-  }
-
   var budgets: Budget[] = [];
   const budgetsResponse = await getBudgets();
   if (budgetsResponse) {
@@ -24,7 +23,6 @@ export default async function dashboard() {
   } else {
     console.error("No budget data received from the server");
   }
-
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
