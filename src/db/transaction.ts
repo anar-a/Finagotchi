@@ -1,4 +1,6 @@
 import prisma from "@/prisma/prisma";
+import { editBudgetById } from "@/db/budget";
+import { getBudgetById } from "@/db/budget";
 
 export type TransactionData = {
     name: string,
@@ -17,17 +19,17 @@ export function validateTransaction(transaction: UserTransactionData | Transacti
 }
 
 export function addTransactionDB(userTransaction: UserTransactionData) {
-    validateTransaction(userTransaction);
+  validateTransaction(userTransaction);
 
-    return prisma.transaction.create({
-        data: {
-            //@ts-ignore
-            name: userTransaction.name,
-            budget: userTransaction.budget,
-            amount: userTransaction.amount,
-            user: userTransaction.user
-        }
-    })
+  return prisma.transaction.create({
+    data: {
+      //@ts-ignore
+      name: userTransaction.name,
+      budget: userTransaction.budget,
+      amount: userTransaction.amount,
+      user: userTransaction.user
+    }
+  })
 }
 
 export function getTransactionsByUser(userId: number) {

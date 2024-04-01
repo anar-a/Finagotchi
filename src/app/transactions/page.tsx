@@ -1,6 +1,7 @@
 import { getTransactions } from '@/actions/transaction';
+import TransactionView from '@/components/transactionsComponents/TransactionView';
+import AddTransaction from '@/components/transactionsComponents/AddTransaction';
 
-//      a. transcation title on the top left
 //      b. add transaction button that will display input fields (save, cancel)
 //      c. below b, list of all associated transactions
 // 4. get money
@@ -17,6 +18,7 @@ import { getTransactions } from '@/actions/transaction';
 //      lines 48-59 actions budget, lines 73-79 db budget
 // 2. manually enter userIDs for transactions already in Supabase so it aint brokey
 // 3. draw up layout for transactions page
+//      a. transcation title on the top left
 //      d. gradient background
 
 
@@ -36,23 +38,22 @@ export default async function transactions() {
   if (transactionsResponse) {
     //@ts-ignore
     transactions = transactionsResponse;
-    console.log(transactions);
   } else {
     console.error("No transaction data received from the server");
   }
 
   return (
-    <div className="bg-gradient-to-tr from-purple-500 to-blue-500">
-      <p className="text-white text-5xl">
+    <div className="bg-gradient-to-tr from-purple-500 to-blue-500 h-screen">
+
+      <p className="text-white text-5xl p-5">
         Transactions
       </p>
 
-      {transactions.map((t) => (
-        <div key={t.name}>
-          <p>{t.name}</p>
-        </div>
-      ))}
+      <AddTransaction/>
 
+      {transactions.map((t) => (
+        <TransactionView key={t.id} transaction={t}/>
+      ))}
     </div>
   );
 }

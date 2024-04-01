@@ -2,6 +2,7 @@
 import { TransactionData, addTransactionDB, getTransactionsByUser } from '@/db/transaction';
 import { getUser } from './user';
 import { getBudgetById } from '@/db/budget';
+import { editBudgetById } from '@/db/budget';
 import { getUserById } from '@/db/user';
 
 export async function addTransaction(transaction: TransactionData) {
@@ -10,9 +11,26 @@ export async function addTransaction(transaction: TransactionData) {
         const budget = await getBudgetById(transaction.budget);
 
         if (user && budget) {
-            const budgetOwner = await getUserById(Number(budget.user));
+            const budgetOwner = await getUserById(Number(budget.user)); 
 
             if (budgetOwner && budgetOwner.email === user.email) {
+
+                // Updating the associated budget (lines 18-32)
+                try {
+                    budget.spent = budget.spent + transaction.amount;
+                    let userNumber =  Number(budget.user)
+                    let updatedBudget = {
+                        name: budget.name,
+                        spent: budget.spent,
+                        target: budget.target,
+                        user: userNumber
+                    }
+                    const editBudget = await editBudgetById(transaction.budget, updatedBudget);
+                }
+                catch (e) {
+                    console.log("Error updating budget", e);
+                }
+                
                 const newTransaction = await addTransactionDB({
                     ...transaction,
                     user: Number(user.id),
