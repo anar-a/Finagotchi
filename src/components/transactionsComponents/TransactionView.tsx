@@ -5,9 +5,9 @@ type Transaction = {
   id: bigint,
   created_at: Date,
   name: string,
-  target: number,
+  budget: bigint,
   user: bigint,
-  spent: number,
+  amount: number,
 }
 
 interface Props {
@@ -15,18 +15,25 @@ interface Props {
 }
 
 const TransactionView: React.FC<Props> = ({ transaction }) => {
-  
-  const { name } = transaction;
+  let userBudget =  Number(transaction.budget)
+  const { name, amount } = transaction;
   const { created_at } = transaction;
-  const { spent } = transaction;
-  const { target } = transaction;
+  const formattedDate = created_at.toLocaleDateString();
   
   return (
     <Card className="m-5">
       <div>
         <p>
-          {name}
-          {spent}
+          Transaction: {name}
+        </p>
+        <p>
+          Transaction Amount: {amount}
+        </p>
+        <p>
+          Budget: {userBudget}
+        </p>
+        <p>
+          Date Transaction Made: {formattedDate}
         </p>
       </div>
     </Card>

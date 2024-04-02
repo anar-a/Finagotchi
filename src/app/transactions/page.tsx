@@ -26,9 +26,9 @@ type Transactions = {
   id: bigint,
   created_at: Date,
   name: string,
-  target: number,
+  budget: bigint,
   user: bigint,
-  spent: number,
+  amount: number,
 }
 
 export default async function transactions() {
