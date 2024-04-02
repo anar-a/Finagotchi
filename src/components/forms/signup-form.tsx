@@ -6,7 +6,6 @@ import { PetName } from "./PetName";
 
 export const SignupForm = () => {
 
-
     const [formData, setFormData] = useState({
         step: 1,
         name: '',
@@ -74,7 +73,7 @@ export const SignupForm = () => {
                 return (
                     <PetName
                         prevStep={prevStep}
-                        nextStep={nextStep}
+                        handleSubmit={handleSubmit}
                         handleChange={handleChange}
                         values={values}
                     />

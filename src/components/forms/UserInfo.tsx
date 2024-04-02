@@ -97,7 +97,7 @@ export const UserInfo = ({ nextStep, handleChange, handleBudgetChange, handleAdd
 
                 <div className="w-full flex justify-end">
                     <button 
-                        className="bg-blue-400 p-2 mr-80 rounded-lg text-slate-100" 
+                        className="bg-blue-400 p-2 mr-60 rounded-lg text-slate-100" 
                         type="button" 
                         onClick={handleAddBudget}>Add Budget</button>
                     <button
