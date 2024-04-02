@@ -75,14 +75,17 @@ export default async function dashboard() {
         />
       </div>
 
-      {/* Overlay image */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src={image}
-          alt="Overlay Image"
-          className="w-1/2"
-        />
+      <div className = "flex h-full">
+        {/* Overlay image */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src={image}
+            alt="Overlay Image"
+            className="w-1/2"
+          />
+        </div>
       </div>
+
     </div>
   )
 }
