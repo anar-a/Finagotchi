@@ -2,14 +2,15 @@ import Carousel from '@/components/dashboardComponents/carousel';
 import Menu from '@/components/dashboardComponents/menu';
 import { getBudgets } from '@/actions/budget';
 import AddTransactionButton from '@/components/dashboardComponents/AddTransactionButton'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { Slider } from '@nextui-org/react'
 
 import newBackground from '../../../public/background.gif';
-import Background from '../../../public/pixelArt.jpeg';
 import Idle from '../../../public/animations/IdleAnimation.gif';
 import Sad from '../../../public/animations/SadAnimation.gif';
-import Happy from '../../../public/animations/happy.gif';
+import Happy from '../../../public/animations/Happy.gif';
+
+// Cattain Spice -- i was thinking cap bc of CAPstone but that pun isnt one im opposed to .
 
 var budgets: Budget[] = [];
 type Budget = {
@@ -23,7 +24,7 @@ type Budget = {
 
 var health:number = 0;
 var color:string = "";
-var image = Idle;
+var image:StaticImageData;
 
 function calculateBudgetHealth(){
   let totalSpent:number = 0;
@@ -76,14 +77,37 @@ export default async function dashboard() {
       </div>
 
       <div className = "flex h-full">
-        {/* Overlay image */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Image
-            src={image}
-            alt="Overlay Image"
-            className="w-1/2"
-          />
+      <div className = "p-9 my-40">
+          <Menu></Menu>
         </div>
+        <div className="py-9 pl-28 pr-7">
+          {/* @ts-ignore: b.color turns into a valid property */}
+          <Carousel budgets={budgets}></Carousel>
+          {/* <div className="absolute flex items-center justify-center mt-48 mr-10"> */}
+          <div className="absolute flex items-center justify-center p-24 ml-28">
+            <Image
+              src={image}
+              alt="Overlay Image"
+              className="w-96"
+              />
+          </div>
+        </div>
+        
+        <div className="h-screen flex flex-col justify-between w-full pb-15 pr-10">
+          {budgets && <AddTransactionButton budgets={budgets}/>}
+          <Slider
+            size="lg"
+            hideThumb={true}
+            value={1-health+.2}
+            step={0.01} 
+            maxValue={1}
+            minValue={0}
+            // @ts-ignore
+            color={color}
+            className="w-full"
+            />
+        </div>
+        {/* Overlay image */}
       </div>
 
     </div>
