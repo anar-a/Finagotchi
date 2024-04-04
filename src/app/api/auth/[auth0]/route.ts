@@ -11,6 +11,6 @@ export const GET = handleAuth({
     returnTo: "/signup-experience",
   }),
   logout: handleLogout({
-    returnTo: "/login"
+    returnTo: "/"
   })
 });
