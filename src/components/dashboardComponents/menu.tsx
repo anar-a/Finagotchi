@@ -3,6 +3,7 @@ import UserIcon from '../../../public/buttonIcons/user.png';
 import BudgetIcon from '../../../public/buttonIcons/budget.png';
 import SettingsIcon from '../../../public/buttonIcons/settings.png';
 import Image from 'next/image'
+import { LogoutButton } from "../buttons/logout-button";
 
 function menu() {
   return (
@@ -26,6 +27,7 @@ function menu() {
           <Image src={ SettingsIcon } alt="Settings Icon" />
           Settings
         </Button>
+        <LogoutButton/>
      </CardBody>
     </Card>
   );
