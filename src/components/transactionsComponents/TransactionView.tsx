@@ -10,6 +10,7 @@ type Transaction = {
   amount: number,
 }
 
+
 interface Props {
   transaction: Transaction;
 }

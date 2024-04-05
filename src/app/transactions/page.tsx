@@ -22,6 +22,7 @@ import AddTransaction from '@/components/transactionsComponents/AddTransaction';
 //      d. gradient background
 
 
+
 type Transactions = {
   id: bigint,
   created_at: Date,
