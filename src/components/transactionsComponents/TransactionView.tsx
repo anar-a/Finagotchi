@@ -1,5 +1,7 @@
 'use client';
 import { Card } from '@nextui-org/react';
+import { getBudget } from '@/actions/budget';
+import { useState, useEffect } from 'react';
 
 type Transaction = {
   id: bigint,
@@ -10,19 +12,39 @@ type Transaction = {
   amount: number,
 }
 
+type Budget = {
+  id:bigint,
+  name: string
+}
+
 
 interface Props {
   transaction: Transaction;
 }
 
+
 const TransactionView: React.FC<Props> = ({ transaction }) => {
   let userBudget =  Number(transaction.budget)
-  const { name, amount } = transaction;
-  const { created_at } = transaction;
+  const [budgetName, setBudgetName] = useState<string>('');
+  const { name, amount, created_at } = transaction;
   const formattedDate = created_at.toLocaleDateString();
+
+  useEffect(() => {
+    getBudget(userBudget)
+      .then((budget: Budget | null | undefined) => {
+        if (budget) {
+          setBudgetName(budget.name);
+        } else {
+          console.error('Budget not found for ID', transaction.budget);
+        }
+      })
+      .catch((error: Error) => {
+        console.error('Error catching budget: ', error);
+      });
+  });
   
   return (
-    <Card className="m-5">
+    <Card>
       <div>
         <p>
           Transaction: {name}
@@ -31,7 +53,7 @@ const TransactionView: React.FC<Props> = ({ transaction }) => {
           Transaction Amount: {amount}
         </p>
         <p>
-          Budget: {userBudget}
+          Budget: {budgetName}
         </p>
         <p>
           Date Transaction Made: {formattedDate}

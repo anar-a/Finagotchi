@@ -1,14 +1,9 @@
 import { getTransactions } from '@/actions/transaction';
 import TransactionView from '@/components/transactionsComponents/TransactionView';
 import AddTransaction from '@/components/transactionsComponents/AddTransaction';
+import { Spacer } from '@nextui-org/react'
 
-//      b. add transaction button that will display input fields (save, cancel)
-//      c. below b, list of all associated transactions
-// 4. get money
-// writing up some stretch goal tickets:
-//      pixel background for page
-//      edit button for previous transactions
-//      delete button for previous transactions
+//      b. add transaction button that will display input fields (save, cancel)     
 
 // DONE
 // planning guys B)
@@ -20,7 +15,7 @@ import AddTransaction from '@/components/transactionsComponents/AddTransaction';
 // 3. draw up layout for transactions page
 //      a. transcation title on the top left
 //      d. gradient background
-
+//      c. below b, list of all associated transactions
 
 
 type Transactions = {
@@ -44,7 +39,7 @@ export default async function transactions() {
   }
 
   return (
-    <div className="bg-gradient-to-tr from-purple-500 to-blue-500 h-screen">
+    <div className="bg-gradient-to-tr from-purple-500 to-blue-500">
 
       <p className="text-white text-5xl p-5">
         Transactions
@@ -52,9 +47,15 @@ export default async function transactions() {
 
       <AddTransaction/>
 
-      {transactions.map((t) => (
-        <TransactionView key={t.id} transaction={t}/>
-      ))}
+      <div className="p-5">
+        {transactions.map((t) => (
+          <div key={t.id} >
+            <TransactionView transaction={t}/>
+            <Spacer y={4} />
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
