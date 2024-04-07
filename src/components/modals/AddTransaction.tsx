@@ -24,6 +24,7 @@ export default function modal(props: any) {
     e.preventDefault();
     const form = transactionForm.current
     if (form) {
+      //27-42 look into setSubmitting function
       const data = new FormData(form);      
       
       const transactionData: TransactionData = {

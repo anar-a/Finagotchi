@@ -1,6 +1,6 @@
 import NavBar from "./NavBar"
 import Image from 'next/image'
-import Background from '../../public/mmmmcat.png'
+import Background from '../../public/animations/IdleAnimation.gif'
 
 
 export default function page(){
@@ -24,7 +24,7 @@ export default function page(){
       </div>
     </div>
       <div className="home-picture md:h-screen flex flex-col justify-center items-center font-sans font-bold">
-        <div style={{ borderRadius: "10%", overflow: "hidden" }}>
+        <div>
           <Image src={Background} alt="Placeholder" width={600} height={600}></Image>
         </div>
         <div className="my-4">

@@ -1,4 +1,6 @@
 import prisma from "@/prisma/prisma";
+import { editBudgetById } from "@/db/budget";
+import { getBudgetById } from "@/db/budget";
 
 export type TransactionData = {
     name: string,
@@ -6,20 +8,34 @@ export type TransactionData = {
     amount: number,
 }
 
-export function validateTransaction(transaction: TransactionData) {
+export type UserTransactionData = TransactionData & {
+    user: number
+};
+
+export function validateTransaction(transaction: UserTransactionData | TransactionData) {
     if (transaction.amount < 0) {
         throw new Error("Transaction amount cannot be negative");
     }
 }
 
-export function addTransactionDB(transaction: TransactionData) {
-    validateTransaction(transaction);
+export function addTransactionDB(userTransaction: UserTransactionData) {
+  validateTransaction(userTransaction);
 
-    return prisma.transaction.create({
-        data: {
-            budget: transaction.budget,
-            name: transaction.name,
-            amount: transaction.amount,
+  return prisma.transaction.create({
+    data: {
+      //@ts-ignore
+      name: userTransaction.name,
+      budget: userTransaction.budget,
+      amount: userTransaction.amount,
+      user: userTransaction.user
+    }
+  })
+}
+
+export function getTransactionsByUser(userId: number) {
+    return prisma.transaction.findMany({
+        where: {
+            user: userId
         }
     })
 }
