@@ -41,3 +41,20 @@ export default function page(){
     </>
   );
 }
+
+// import carousel, follow dashboard page for implementing
+// outside default function:
+// budgets = [
+//   {
+//     name:
+//     target:
+//     spent:
+//   },
+//   {
+//     name:
+//     target:
+//     spent:
+//   }
+// ]
+// inside default function
+// <Carousel budgets={budgets}></Carousel>
