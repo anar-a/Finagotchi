@@ -49,7 +49,7 @@ export const SignupForm = () => {
     }
 
     const handleSubmit = (e: any) => {
-        // e.preventDefault();
+        e.preventDefault();
     }
 
     const renderStep = () => {
