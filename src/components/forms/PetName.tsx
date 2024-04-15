@@ -4,6 +4,8 @@ import React from "react";
 import Image from 'next/image';
 import Pet from '../../../public/animations/happy.gif';
 import Background from '../../../public/tamoBackground.jpg';
+import { editPet, getPet } from "@/actions/pet";
+import { editUser, getUser } from "@/actions/user";
 
 export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) => {
 
@@ -15,6 +17,7 @@ export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) =
     const Continue = (event: any) => {
         event.preventDefault();
 
+        console.log('values', values)
         const budgets = values.budgets.map((budget: any) => {
             const b: BudgetData = {
                 name: budget.budgetName,
@@ -25,12 +28,37 @@ export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) =
         });
 
         createBudgets(budgets)
-            .then((createdBudgets) => {
+            .then(async (createdBudgets) => {
                 if (!createdBudgets) {
                     console.log("Unable to create budgets or not budgets provided");
                 }
                 console.log("Created budgets", createdBudgets)
+
+                const pet = await getPet();
+                if (pet) {
+                    pet.name = values.petName;
+                    editPet(pet);
+                }
             })
+            .catch((error) => {
+                alert('Error creating budgets and pet. Please make sure your pet name is valid.');
+            })
+        
+        getUser()
+        .then((user) => {
+            if (user) {
+                user.name = values.name;
+
+                editUser(user)
+                .catch((error) => {
+                    console.log("Error editing username for user", user.email, error);
+                })
+            }
+
+        })
+        .catch((error) => {
+            console.log("Error getting user to edit name", error);
+        })
 
         handleSubmit();
     }
@@ -52,6 +80,7 @@ export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) =
                             placeholder="Ex: Murray"
                             value={values.petName}
                             onChange={event => handleChange('petName', event.target.value)}
+                            maxLength={20}
                             required
                         />
                     </div>

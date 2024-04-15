@@ -1,5 +1,6 @@
 import { Claims, getSession } from '@auth0/nextjs-auth0'
 import prisma from '@/prisma/prisma'
+import { user } from '@prisma/client';
 
 // -----------------------------------------------------------------------------------
 // These can only be used from the server, for client API calls check /actions/user.ts
@@ -8,6 +9,11 @@ import prisma from '@/prisma/prisma'
 // -----------------------------------------------------------------------------------
 
 // Checks if the given user Id matches the user Id stored for the session's email address (authorize)
+
+function validateUser(user: user) {
+    // if (...) throw new Error("Validation fail")
+}
+
 export async function checkUserIdMatchesSession(userId: number, user: Claims | undefined | null) {
     const userInfo = await getUserById(userId);
 
@@ -53,6 +59,19 @@ export function getUserByEmail(userEmail: string) {
     return prisma.user.findUnique({
         where: {
             email: userEmail
+        }
+    })
+}
+
+export function editUserDB(user: user) {
+    validateUser(user);
+
+    return prisma.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            name: user.name,
         }
     })
 }
