@@ -8,7 +8,7 @@ import { FaXmark } from "react-icons/fa6";
 // the parent component of this one should have a state boolean for whether the modal is visible or not
 // and it should pass a function to toggle that variable as a prop
 
-export default function modal(props: any) {
+export default function AddTransactionModal(props: any) {
   const toggleModal = props.toggleModal;
   const transactionForm = useRef<HTMLFormElement | null>(null);
   const [submitting, setSubmitting] = useState(false);
