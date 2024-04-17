@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -37,6 +38,17 @@ model user {
   id                                 BigInt        @id @default(autoincrement())
   created_at                         DateTime      @default(now()) @db.Timestamptz(6)
   email                              String        @unique @db.VarChar
+  name                               String?
   budget_budget_userTouser           budget[]      @relation("budget_userTouser")
+  pet_pet_userTouser                 pet?          @relation("pet_userTouser")
   transaction_transaction_userTouser transaction[] @relation("transaction_userTouser")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model pet {
+  id                  BigInt   @id @default(autoincrement())
+  created_at          DateTime @default(now()) @db.Timestamptz(6)
+  user                BigInt   @unique
+  name                String?
+  user_pet_userTouser user     @relation("pet_userTouser", fields: [user], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "public_pet_user_fkey")
 }

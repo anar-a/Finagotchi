@@ -6,8 +6,7 @@ import AddIcon from '../../../public/buttonIcons/add-64.png';
 import { useState } from 'react';
 import AddTransactionModal from '@/components/modals/AddTransaction';
 
-
-export default function button(props: any) {
+export default function AddTransactionButton(props: any) {
     const [showModal, setShowModal] = useState(false);
 
     function toggleModal() {
