@@ -1,5 +1,6 @@
 'use server'
-import { createUser, getSessionInfo, getUserByEmail } from '@/db/user';
+import { createUser, editUserDB, getSessionInfo, getUserByEmail } from '@/db/user';
+import { user } from '@prisma/client';
 
 export async function getUser() {
     const user = await getSessionInfo();
@@ -28,5 +29,20 @@ export async function requestCreateUser() {
     }
     catch (error) {
         console.log(`Error creating user for ${user.email}`, error);
+    }
+}
+
+
+export async function editUser(user: user) {
+    try {
+        const sessionUser = await getUser();
+
+        if (sessionUser && sessionUser.email === user.email) {
+            return editUserDB(user);
+        }
+
+    }
+    catch (error) {
+        console.log("Error editing user", error);
     }
 }
