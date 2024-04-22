@@ -48,10 +48,6 @@ export const SignupForm = () => {
         });
     }
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-    }
-
     const renderStep = () => {
 
         const { step, name, budgets, petName } = formData;
@@ -73,7 +69,7 @@ export const SignupForm = () => {
                 return (
                     <PetName
                         prevStep={prevStep}
-                        handleSubmit={handleSubmit}
+                        nextStep={nextStep}
                         handleChange={handleChange}
                         values={values}
                     />
@@ -81,7 +77,7 @@ export const SignupForm = () => {
             
             case 3:
                 return (
-                    <div>Success</div>
+                    <div>Success. Sending you to your dashboard...</div>
                 )
 
             default:
