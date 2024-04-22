@@ -11,17 +11,35 @@ body {
 }
 
 .wholethang {
-    background: radial-gradient(circle at top, #f26d7b , #e8c369);
+    position: relative;
+    color: white;
+}
+
+.abouttab {
+    position:relative;
+    color: white;
 }
 
 .home-content{
     display: flex;
     padding: 0 5rem;
     align-items: center;
-    
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.pixelart {
+    object-fit: cover;
+    z-index: -5;
 }
 
 .home-picture{
+    display:flex;
+    padding:0 5rem;
+    align-items: center;
+}
+
+.home-carousel{
     display:flex;
     padding:0 5rem;
     align-items: center;
