@@ -7,7 +7,7 @@ import Background from '../../../public/tamoBackground.jpg';
 import { editPet, getPet } from "@/actions/pet";
 import { editUser, getUser } from "@/actions/user";
 
-export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) => {
+export const PetName = ({ prevStep, nextStep, handleChange, values }: any) => {
 
     const Previous = (event: any) => {
         event.preventDefault();
@@ -60,7 +60,7 @@ export const PetName = ({ prevStep, handleSubmit, handleChange, values }: any) =
             console.log("Error getting user to edit name", error);
         })
 
-        handleSubmit();
+        nextStep();
     }
 
     return (
