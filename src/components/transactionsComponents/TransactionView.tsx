@@ -44,18 +44,18 @@ const TransactionView: React.FC<Props> = ({ transaction }) => {
   });
   
   return (
-    <Card>
+    <Card className = "bg-black bg-opacity-50 text-white flex flex-auto min-h-full">
       <div>
-        <p>
+        <p className = "text-3xl">
           Transaction: {name}
         </p>
-        <p>
+        <p className = "text-3xl">
           Transaction Amount: {amount}
         </p>
-        <p>
+        <p className = "text-3xl">
           Budget: {budgetName}
         </p>
-        <p>
+        <p className = "text-3xl">
           Date Transaction Made: {formattedDate}
         </p>
       </div>
