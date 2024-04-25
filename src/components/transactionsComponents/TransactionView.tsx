@@ -45,7 +45,7 @@ const TransactionView: React.FC<Props> = ({ transaction }) => {
   
   return (
     <Card className = "bg-black bg-opacity-50 text-white flex flex-auto min-h-full">
-      <div>
+      <div className="p-2">
         <p className = "text-3xl">
           Transaction: {name}
         </p>
