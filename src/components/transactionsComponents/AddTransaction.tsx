@@ -40,28 +40,28 @@ export default function AddTransaction(props: any) {
     <form 
           ref={transactionForm}
           onSubmit={handleSubmit}>
-    <div className="m-5 h-32">
-      <div className="flex flex-wrap gap-4 items-center w-full"> 
-      <label className="text-xl">Name</label>
+    <div className="flex flex-row px-8">
+      <div className="flex flex-wrap items-center w-full"> 
+      <label className="text-xl text-white">Name</label>
               <input
                 name="name"
                 type="text"
                 className="border border-gray-800 rounded-md ms-5 px-2 w-60" 
                 required />
             </div> 
-            <div className="flex flex-wrap gap-4 items-center w-full">
-            <label className="text-xl">Amount</label>
+            <div className="flex flex-wrap items-center w-full">
+            <label className="text-xl text-white">Amount</label>
               <input
                 name="amount"
                 className="border border-gray-800 rounded-md ms-5 px-2 w-60" 
                 onInput={restrictNumberInput} 
                 required />
             </div>
-      <div className="flex flex-wrap gap-4 items-center w-full">
-        <label className="text-xl">Budget</label>
+      <div className="flex flex-wrap items-center w-full">
+        <label className="text-xl text-white">Budget</label>
           <select
             name="budget"
-            className="ml-3 px-3 bg-slate-200 rounded-md w-60"
+            className="ml-5 px-3 bg-slate-200 rounded-md w-60"
             required>
             {props.budgets.map((budget: budget, index: number) => {
             return (
@@ -75,8 +75,8 @@ export default function AddTransaction(props: any) {
               </select>
             </div>
       <Button type="submit"
-                className="bg-purple-700 hover:bg-purple-800 text-white font-medium py-1 px-3 ms-2 rounded-md disabled:bg-slate-400"
-                disabled={submitting}>
+        className="bg-purple-700 hover:bg-purple-800 text-white font-medium rounded-md disabled:bg-slate-400 min-w-fit"
+        disabled={submitting}>
         Add Transaction
       </Button>  
       </div>
