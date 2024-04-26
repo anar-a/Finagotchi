@@ -79,8 +79,8 @@ export const SignupForm = () => {
                 )
             
             case 3:
-                const router = useRouter();
-                router.push("/dashboard")
+                //const router = useRouter();
+                //router.push("/dashboard")
                 return (
                     <div>Success. Sending you to your dashboard...</div>
                 )
