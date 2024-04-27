@@ -6,8 +6,10 @@ import Pet from '../../../public/animations/happy.gif';
 import Background from '../../../public/tamoBackground.jpg';
 import { editPet, getPet } from "@/actions/pet";
 import { editUser, getUser } from "@/actions/user";
+import { useRouter } from "next/navigation";
 
 export const PetName = ({ prevStep, nextStep, handleChange, values }: any) => {
+    const router = useRouter();
 
     const Previous = (event: any) => {
         event.preventDefault();
@@ -50,6 +52,9 @@ export const PetName = ({ prevStep, nextStep, handleChange, values }: any) => {
                 user.name = values.name;
 
                 editUser(user)
+                .then(() => {
+                    router.push("/dashboard")
+                })
                 .catch((error) => {
                     console.log("Error editing username for user", user.email, error);
                 })
