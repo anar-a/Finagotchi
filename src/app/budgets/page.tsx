@@ -1,3 +1,6 @@
+import { getBudgets } from '@/actions/budget';
+import BudgetView from '@/components/budgetPage/budgetView';
+import AddBudget from '@/components/budgetPage/addBudget';
 
 type Budget = {
   id: bigint 
@@ -7,15 +10,21 @@ type Budget = {
   user: bigint,
   spent: number,
 }
+type BudgetDisplay = Budget & {
+  editMode: false;
+}
+var budgetData: Budget[] = [];
 
-
-// import budget type here
-// extend budget type but with 
-// import function to grab all associated budgets
 
 export default async function Budgets() {
 
-  // Grab all budgets
+  const budgetsResponse = await getBudgets();
+  if (budgetsResponse) {
+    budgetData = budgetsResponse;
+  } else {
+    console.error("No budget data received from the server");
+  }
+
   console.log("Here is where we are going to start testing");
 
   return (
@@ -27,15 +36,16 @@ export default async function Budgets() {
 
       {/* Add Budget Fields */}
       <div>
-
+        <AddBudget/>
       </div>
 
       {/* Display All Budgets */}
-      <div>
-        {/* mapping out all of the budgets */}
-        <div>
-          {/* if else for if edit button is clicked */}
-        </div>
+      <div className="grid grid-cols-2">
+        {budgetData.map((b)=> (
+          <div key={b.id}>
+            <BudgetView budget={b}/>
+          </div>
+        ))}
       </div>
     </div>
   )

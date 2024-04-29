@@ -42,7 +42,7 @@ export default async function transactions() {
   }
 
   return (
-    <div className="h-max bg-gradient-to-tr from-purple-500 to-blue-500">
+    <div className="h-max bg-gradient-to-tr from-purple-500 to-blue-500 min-h-screen">
 
       <p className="text-white text-5xl p-5">
         Transactions
