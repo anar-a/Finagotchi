@@ -4,21 +4,6 @@ import AddTransaction from '@/components/transactionsComponents/AddTransaction';
 import { Spacer } from '@nextui-org/react'
 import { getBudgets } from '@/actions/budget';
 
-//      b. add transaction button that will display input fields (save, cancel)     
-
-// DONE
-// planning guys B)
-// 1. write a function to pull all the associated transactions
-//      a. action version
-//      b. db version (base off budget function)
-//      lines 48-59 actions budget, lines 73-79 db budget
-// 2. manually enter userIDs for transactions already in Supabase so it aint brokey
-// 3. draw up layout for transactions page
-//      a. transcation title on the top left
-//      d. gradient background
-//      c. below b, list of all associated transactions
-
-
 type Transactions = {
   id: bigint,
   created_at: Date,
@@ -57,7 +42,7 @@ export default async function transactions() {
   }
 
   return (
-    <div className="h-max bg-gradient-to-tr from-purple-500 to-blue-500">
+    <div className="h-max bg-gradient-to-tr from-purple-500 to-blue-500 min-h-screen">
 
       <p className="text-white text-5xl p-5">
         Transactions

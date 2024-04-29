@@ -23,7 +23,7 @@ function menu() {
           </ModalButton>
         <Button className="bg-gradient-to-tr from-purple-500 to-blue-500 text-white shadow-lg" aria-label="Budget">
           <Image src={ BudgetIcon } alt="Budget Icon" />
-          Budget
+          <a href="/budgets">Budget</a>
         </Button>
         <Button className="bg-gradient-to-tr from-purple-500 to-blue-500 text-white shadow-lg" aria-label="Budget">
           <a href="/transactions">Transaction</a>
